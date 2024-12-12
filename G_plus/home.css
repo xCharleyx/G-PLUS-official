@@ -1,0 +1,312 @@
+/* Сброс стилей по умолчанию */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Основной стиль для страницы */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    /* background-image: url('/img/White.png'); Указываем путь к логотипу */
+    background-position: center; /* Центрируем изображение */
+    background-repeat: no-repeat; /* Изображение не повторяется */
+    background-size: contain; /* Масштабируем логотип по размеру экрана */
+    background-attachment: fixed; /* Логотип будет фиксирован относительно экрана */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.light-theme {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+body.dark-theme {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* ======================================================================================================================== */
+
+/* Основной стиль для header */
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.3); /* Полупрозрачный фон */
+    backdrop-filter: blur(20px);
+    border-radius: 0px 0px 10px 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    z-index: 100;
+    display: flex; /* Используем Flexbox для выравнивания элементов */
+    justify-content: space-between; /* Логотип слева, аватар справа */
+    align-items: center; /* Вертикальное выравнивание по центру */
+    padding: 10px 20px; /* Отступы вокруг содержимого */
+    box-sizing: border-box; /* Учитываем отступы в ширине */
+}
+
+/* Логотип */
+#header .logo img {
+    max-height: 40px; /* Ограничиваем высоту логотипа */
+}
+
+/* Информация о пользователе (аватарка) */
+#header .user-info {
+    display: flex;
+    align-items: center; /* Выравниваем аватар и элементы в ряд */
+}
+
+/* Аватар */
+#header .user-info .avatar img {
+    width: 40px; /* Размер аватарки */
+    height: 40px; /* Высота аватарки */
+    border-radius: 50%; /* Сделаем аватарку круглой */
+    margin-left: 10px; /* Отступ между аватаркой и другими элементами */
+    cursor: pointer;
+}
+
+/* Кнопка переключения темы */
+.header-right {
+    display: flex;
+    align-items: center; /* Центрируем иконку и аватар по вертикали */
+    gap: 10px; /* Добавляем отступ между элементами */
+}
+
+/* Кнопка переключения темы */
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    font-size: 1.5rem;
+    color: inherit;
+    display: flex;
+    align-items: center; /* Центрируем иконку внутри кнопки */
+    justify-content: center;
+}
+
+
+.theme-toggle:hover {
+    transform: rotate(15deg) scale(1.1);
+}
+
+#header {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+body.dark-theme #header {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* Остальные стили остаются неизменными */
+
+
+@media (max-width: 768px) {
+    #header {
+        flex-direction: row; /* Гарантируем, что элементы расположены в строку */
+        justify-content: space-between; /* Логотип слева, аватар справа */
+        align-items: center; /* Центрируем элементы вертикально */
+        padding: 10px 15px; /* Уменьшаем отступы */
+    }
+
+    /* Логотип */
+    #header .logo img {
+        max-height: 30px; /* Уменьшаем размер логотипа для мобильных */
+    }
+
+    /* Аватар пользователя */
+    #header .user-info .avatar img {
+        width: 35px; /* Уменьшаем аватарку */
+        height: 35px; /* Пропорционально ширине */
+    }
+}
+
+
+#hero {
+    position: relative; /* Устанавливаем относительное позиционирование для секции */
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(90deg, #ff7eb3, #ff758c, #8e2de2);
+    background-size: 200% 200%;
+    animation: gradientMove 6s ease infinite; /* Анимация градиента */
+    text-align: center;
+    color: white;
+    overflow: hidden; /* Скрываем выходящие элементы */
+}
+
+/* Затемнение через псевдоэлемент */
+#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Располагаем затемнение ниже текста */
+}
+
+/* Контент внутри секции поверх затемнения */
+#hero h1, #hero p, #hero button, #hero img {
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+#hero img {
+    width: 150px;
+    animation: fadeIn 2s;
+}
+#hero p {
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+#hero button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    background: linear-gradient(90deg, #ff008c, #ff3859, #8e2de2); /* Градиент, как в первой секции */
+    background-size: 200% 200%;
+    animation: gradientMove 6s ease infinite; /* Анимация из первой секции */
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+#hero button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -110%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: skewX(-45deg);
+    transition: left 0.4s ease;
+}
+#hero button:hover::before {
+    left: 110%;
+}
+#new-section {
+    height: 50vh;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f7f7;
+    color: #333;
+    text-align: center;
+}
+#features, #support {
+    padding: 40px 20px;
+    background-color: #000000;
+    color: #f7f7f7;
+    text-align: center;
+}
+#features h2, #support h2, #new-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+#features ul {
+    list-style: none;
+    padding: 0;
+}
+#features li {
+    margin: 10px 0;
+}
+/* Градиентный фон для секции поддержки */
+#support {
+    height: 40vh; /* Высота аналогична первой секции */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-size: 200% 200%;
+    animation: gradientMove 6s ease infinite; /* Анимация из первой секции */
+    color: white;
+    text-align: center;
+}
+
+
+
+/* Заголовок и текст внутри секции */
+#support h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+#support p {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+/* Кнопка с отблеском */
+.shiny-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(90deg, #ff008c, #ff3859, #8e2de2); /* Градиент, как в первой секции */
+    background-size: 200% 200%;
+    animation: gradientMove 6s ease infinite; /* Анимация из первой секции */
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Отблеск на кнопке */
+.shiny-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -110%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: skewX(-45deg);
+    transition: left 0.4s ease;
+}
+
+/* Отблеск при наведении */
+.shiny-button:hover::before {
+    left: 110%;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1a1a1a;
+    color: white;
+}
+/* Темная тема */
+body.dark {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+body.dark #hero button {
+    background-color: #333;
+    color: white;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Убираем маркеры для списка */
+.no-markers {
+    list-style: none;
+    padding: 0;
+}
